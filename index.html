@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Sinnu ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .screen {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+            min-height: 80vh;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .active {
+            display: flex;
+            animation: fadeIn 1s ease;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: #e91e63;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: #673ab7;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #555;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #e91e63, #673ab7);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 20px;
+            font-weight: 500;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .heart-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .heart {
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .heart:hover {
+            transform: scale(1.2);
+        }
+
+        .broken {
+            animation: breakHeart 0.5s forwards;
+        }
+
+        .fixed {
+            animation: fixHeart 0.5s forwards;
+        }
+
+        .message-box {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #e91e63;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e91e63, #673ab7);
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            color: rgba(233, 30, 99, 0.3);
+            font-size: 24px;
+            animation: floatHearts 15s linear infinite;
+        }
+
+        .love-meter {
+            width: 100%;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            margin: 30px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .love-fill {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, #e91e63, #673ab7);
+            border-radius: 15px;
+            transition: width 2s ease;
+        }
+
+        .love-percentage {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .final-message {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: #e91e63;
+            margin: 30px 0;
+            line-height: 1.4;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes breakHeart {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.5) rotate(15deg); }
+            100% { transform: scale(0.8) rotate(-15deg); opacity: 0.5; }
+        }
+
+        @keyframes fixHeart {
+            0% { transform: scale(0.8) rotate(-15deg); opacity: 0.5; }
+            50% { transform: scale(1.2) rotate(10deg); opacity: 0.8; }
+            100% { transform: scale(1) rotate(0); opacity: 1; }
+        }
+
+        @keyframes floatHearts {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            p { font-size: 1.1rem; }
+            .photo-frame { width: 150px; height: 150px; }
+            .final-message { font-size: 2rem; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.8rem; }
+            p { font-size: 1rem; }
+            .photo-frame { width: 120px; height: 120px; }
+            .final-message { font-size: 1.8rem; }
+            .btn { padding: 12px 25px; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="hearts-container"></div>
+
+    <!-- Screen 1: Welcome -->
+    <div class="screen active" id="screen1">
+        <h1>For My Sinnu ❤️</h1>
+        <div class="photo-frame">
+            <!-- Add your photo here -->
+            <span>Our Photo</span>
+        </div>
+        <p>Yeh ek chhota sa surprise hai sirf tumhare liye...</p>
+        <p>Click on the button to begin our love journey!</p>
+        <button class="btn" id="startBtn">Start Our Love Story</button>
+    </div>
+
+    <!-- Screen 2: First Memory -->
+    <div class="screen" id="screen2">
+        <h2>Our First Meeting</h2>
+        <div class="message-box">
+            <p>Woh din kabhi nahi bhoolunga jab pehli baar tumse mila...</p>
+            <p>Tumhari muskurahat ne mera dil jeet liya tha</p>
+        </div>
+        <p>Click on the hearts to continue...</p>
+        <div class="heart-container">
+            <div class="heart" id="heart1">❤️</div>
+            <div class="heart" id="heart2">❤️</div>
+            <div class="heart" id="heart3">❤️</div>
+        </div>
+    </div>
+
+    <!-- Screen 3: Broken Heart Game -->
+    <div class="screen" id="screen3">
+        <h2>Oh No! You Broke My Heart</h2>
+        <p>You clicked too hard! Now you have to fix it...</p>
+        <div class="heart-container">
+            <div class="heart broken" id="broken-heart">💔</div>
+        </div>
+        <p>Click on the broken heart to fix it with your love</p>
+        <button class="btn" id="fixBtn">Fix With Love</button>
+    </div>
+
+    <!-- Screen 4: Fixed Heart -->
+    <div class="screen" id="screen4">
+        <h2>You Fixed It! ❤️</h2>
+        <p>Tumhare pyaar ne mera dil phir se jod diya!</p>
+        <div class="heart-container">
+            <div class="heart fixed">❤️</div>
+        </div>
+        <p>Tumhari mohabbat meri har dard ko thik kar deti hai</p>
+        <button class="btn" id="continueBtn">Continue Our Journey</button>
+    </div>
+
+    <!-- Screen 5: Love Meter -->
+    <div class="screen" id="screen5">
+        <h2>How Much I Love You</h2>
+        <p>Yeh dekho kitna pyaar hai tumhare liye mere dil mein</p>
+        <div class="love-meter">
+            <div class="love-fill" id="love-fill"></div>
+            <div class="love-percentage" id="love-percentage">0%</div>
+        </div>
+        <p>Click the button to see my love grow!</p>
+        <button class="btn" id="loveBtn">Show My Love</button>
+    </div>
+
+    <!-- Screen 6: Final Message -->
+    <div class="screen" id="screen6">
+        <h2>For My Sinnu</h2>
+        <div class="final-message">
+            Tum meri zindagi ki sabse khoobsurat ehsaas ho<br>
+            Har pal tumhare saath bitana chahta hoon<br>
+            I love you more than words can say
+        </div>
+        <div class="message-box">
+            <p>Yeh toh bas shuruaat hai humari pyaar bhari journey ki...</p>
+            <p>Forever yours,</p>
+            <p style="font-family: 'Great Vibes', cursive; font-size: 2rem; color: #e91e63;">Dhananjay</p>
+        </div>
+        <button class="btn" id="restartBtn">Start Again</button>
+    </div>
+
+    <script>
+        // Create floating hearts background
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            const heartCount = 15;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('floating-heart');
+                heart.innerHTML = '❤️';
+                
+                const left = Math.random() * 100;
+                const delay = Math.random() * 15;
+                const duration = 10 + Math.random() * 10;
+                
+                heart.style.left = `${left}vw`;
+                heart.style.animationDelay = `${delay}s`;
+                heart.style.animationDuration = `${duration}s`;
+                
+                container.appendChild(heart);
+            }
+        }
+
+        // Show specific screen
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            document.getElementById(screenId).classList.add('active');
+        }
+
+        // Fix broken heart
+        function fixHeart() {
+            const brokenHeart = document.getElementById('broken-heart');
+            brokenHeart.classList.remove('broken');
+            brokenHeart.classList.add('fixed');
+            brokenHeart.innerHTML = '❤️';
+            
+            setTimeout(() => {
+                showScreen('screen4');
+            }, 1000);
+        }
+
+        // Fill love meter
+        function fillLoveMeter() {
+            const loveFill = document.getElementById('love-fill');
+            const lovePercentage = document.getElementById('love-percentage');
+            
+            loveFill.style.width = '100%';
+            
+            let percentage = 0;
+            const interval = setInterval(() => {
+                percentage += 1;
+                lovePercentage.textContent = `${percentage}%`;
+                
+                if (percentage >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        showScreen('screen6');
+                    }, 1000);
+                }
+            }, 30);
+        }
+
+        // Add click hearts effect
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('btn') || e.target.classList.contains('heart')) return;
+            
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = `${e.clientX}px`;
+            heart.style.top = `${e.clientY}px`;
+            heart.style.animationDuration = '3s';
+            document.getElementById('hearts-container').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        });
+
+        // Initialize event listeners when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            createHearts();
+            
+            // Button event listeners
+            document.getElementById('startBtn').addEventListener('click', function() {
+                showScreen('screen2');
+            });
+            
+            document.getElementById('fixBtn').addEventListener('click', fixHeart);
+            
+            document.getElementById('continueBtn').addEventListener('click', function() {
+                showScreen('screen5');
+            });
+            
+            document.getElementById('loveBtn').addEventListener('click', fillLoveMeter);
+            
+            document.getElementById('restartBtn').addEventListener('click', function() {
+                showScreen('screen1');
+            });
+            
+            // Heart click listeners
+            document.getElementById('heart1').addEventListener('click', function() {
+                showScreen('screen3');
+            });
+            
+            document.getElementById('heart2').addEventListener('click', function() {
+                showScreen('screen3');
+            });
+            
+            document.getElementById('heart3').addEventListener('click', function() {
+                showScreen('screen3');
+            });
+            
+            // Broken heart click listener
+            document.getElementById('broken-heart').addEventListener('click', fixHeart);
+        }

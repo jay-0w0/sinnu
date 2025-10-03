@@ -270,7 +270,7 @@
         </div>
         <p>Yeh ek chhota sa surprise hai sirf tumhare liye...</p>
         <p>Click on the button to begin our love journey!</p>
-        <button class="btn" id="startBtn">Start Our Love Story</button>
+        <button class="btn" onclick="showScreen('screen2')">Start Our Love Story</button>
     </div>
 
     <!-- Screen 2: First Memory -->
@@ -282,9 +282,9 @@
         </div>
         <p>Click on the hearts to continue...</p>
         <div class="heart-container">
-            <div class="heart" id="heart1">❤️</div>
-            <div class="heart" id="heart2">❤️</div>
-            <div class="heart" id="heart3">❤️</div>
+            <div class="heart" onclick="showScreen('screen3')">❤️</div>
+            <div class="heart" onclick="showScreen('screen3')">❤️</div>
+            <div class="heart" onclick="showScreen('screen3')">❤️</div>
         </div>
     </div>
 
@@ -296,7 +296,7 @@
             <div class="heart broken" id="broken-heart">💔</div>
         </div>
         <p>Click on the broken heart to fix it with your love</p>
-        <button class="btn" id="fixBtn">Fix With Love</button>
+        <button class="btn" onclick="fixHeart()">Fix With Love</button>
     </div>
 
     <!-- Screen 4: Fixed Heart -->
@@ -307,7 +307,7 @@
             <div class="heart fixed">❤️</div>
         </div>
         <p>Tumhari mohabbat meri har dard ko thik kar deti hai</p>
-        <button class="btn" id="continueBtn">Continue Our Journey</button>
+        <button class="btn" onclick="showScreen('screen5')">Continue Our Journey</button>
     </div>
 
     <!-- Screen 5: Love Meter -->
@@ -319,7 +319,7 @@
             <div class="love-percentage" id="love-percentage">0%</div>
         </div>
         <p>Click the button to see my love grow!</p>
-        <button class="btn" id="loveBtn">Show My Love</button>
+        <button class="btn" onclick="fillLoveMeter()">Show My Love</button>
     </div>
 
     <!-- Screen 6: Final Message -->
@@ -335,7 +335,7 @@
             <p>Forever yours,</p>
             <p style="font-family: 'Great Vibes', cursive; font-size: 2rem; color: #e91e63;">Dhananjay</p>
         </div>
-        <button class="btn" id="restartBtn">Start Again</button>
+        <button class="btn" onclick="showScreen('screen1')">Start Again</button>
     </div>
 
     <script>
@@ -419,40 +419,10 @@
             }, 3000);
         });
 
-        // Initialize event listeners when DOM is loaded
+        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             createHearts();
-            
-            // Button event listeners
-            document.getElementById('startBtn').addEventListener('click', function() {
-                showScreen('screen2');
-            });
-            
-            document.getElementById('fixBtn').addEventListener('click', fixHeart);
-            
-            document.getElementById('continueBtn').addEventListener('click', function() {
-                showScreen('screen5');
-            });
-            
-            document.getElementById('loveBtn').addEventListener('click', fillLoveMeter);
-            
-            document.getElementById('restartBtn').addEventListener('click', function() {
-                showScreen('screen1');
-            });
-            
-            // Heart click listeners
-            document.getElementById('heart1').addEventListener('click', function() {
-                showScreen('screen3');
-            });
-            
-            document.getElementById('heart2').addEventListener('click', function() {
-                showScreen('screen3');
-            });
-            
-            document.getElementById('heart3').addEventListener('click', function() {
-                showScreen('screen3');
-            });
-            
-            // Broken heart click listener
-            document.getElementById('broken-heart').addEventListener('click', fixHeart);
-        }
+        });
+    </script>
+</body>
+</html>
